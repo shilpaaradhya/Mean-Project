@@ -3,13 +3,23 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+const mongoose = require('mongoose')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+const Post = require('../expressproject/model/post')
+const checkAuth = require('./middleware/check-auth')
 var app = express();
 
 var bodyParser = require('body-parser');
+const { error } = require('console');
+
+mongoose.connect("mongodb+srv://ana:EvnF8OYFQewh5ovy@cluster0.psp8r.mongodb.net/node-angular?retryWrites=true&w=majority", { useUnifiedTopology: true, useNewUrlParser: true })
+    .then(() => {
+        console.log('connected to Database')
+    })
+    .catch((err) => {
+        console.log(err)
+    })
 
 app.use(bodyParser.urlencoded({
     extended: true
@@ -20,11 +30,13 @@ app.options('/*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, Cache-Control, Pragma, Expires");
     res.sendStatus(200);
+    next();
 });
 
 app.use('/*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    res.setHeader("Access-Controll-Allow-Headers", "GET ,POST , PATCH , DELETE , OPTIONS");
     next();
 });
 
@@ -39,14 +51,48 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public/dist/express')));
 
-app.get(['/', '/*'], function(req, res) {
+app.get(['/home', '/posts', '/', '/login', '/signup'], function(req, res) {
     res.header("Access-Control-Allow-Origin", '*');
     res.header('Access-Control-Allow-Headers', 'Content-type,Accept,X-Access-Token,X-Key,token,Origin,X-Origin');
     res.sendFile('index.html', { root: __dirname + '/public/dist/express' });
 });
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/users/', usersRouter);
+
+app.post("/api/postData", (req, res, next) => {
+    const post = new Post({
+        title: req.body.title,
+        content: req.body.content
+    })
+    post.save();
+    res.status(201).json({
+        message: post,
+    })
+});
+
+app.get("/api/getData", (request, response) => {
+        const pageSize = +request.query.pagesize;
+        const currentPage = +request.query.page;
+        const postQuery = Post.find();
+        if (pageSize && currentPage) {
+            postQuery.skip(pageSize * (currentPage - 1))
+                .limit(pageSize);
+            console.log(pageSize)
+        }
+        postQuery.then(documents => {
+            response.status(201).json({
+                message: documents,
+            })
+        });
+    }),
+
+    app.delete("/api/deleteData/:id", checkAuth, (req, res, next) => {
+        Post.deleteOne({ _id: req.params.id }).then(result => {
+            console.log(result);
+            res.status(200).json({ message: 'post deleted' })
+        });
+    });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -63,5 +109,6 @@ app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
+
 
 module.exports = app;
