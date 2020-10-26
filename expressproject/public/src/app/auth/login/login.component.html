@@ -1,0 +1,45 @@
+<div class="wrapper">
+    <div class=" loginWrapper loginImage">
+        <div class="container ">
+
+            <section class="loginBox">
+                <header class="mb text-center p-2 pb-4">
+                    <!-- <figure><img src="./assets/img/logo.png" alt="" style="width: 166px;height: 115px;"></figure> -->
+                    <h3 style="font-family: fantasy;"> ANGULAR PROJECT</h3>
+                    <h6 style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Post Creation</h6>
+                </header>
+                <form #data="ngForm" (ngSubmit)="login()" class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <input type="email" name="email" required #email="ngModel" [(ngModel)]="user.email" class="form-control" id="inputEmail3" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <input type="password" name="password" required #password="ngModel" [(ngModel)]="user.password" class="form-control" id="inputPassword3" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="col-sm-12" *ngIf="errdiv" style="text-align: center;">
+                        <i style="font-style:normal;color:#fd6603; margin-top:-20px">{{errMsg}}</i>
+                    </div>
+                    <div class="col-sm-12" *ngIf="expireddiv" style="text-align: center;">
+                        <i style="font-style:normal;color:#fd6603; margin-top:-20px">Session Expired
+                            please login.</i>
+                    </div>
+                    <div class="form-group pt-2 text-center">
+                        <div class="col-sm-12">
+                            <div class="checkbox mb">
+                                <!-- <label>
+                                    <input type="checkbox" checked=""> <span class="small">Remember me</span>
+                                </label> -->
+                            </div>
+                            <button type="submit" class="btn btn-lg1 btn-primary">Sign in</button>
+                            <div class="clearfix mt pt-3"></div>
+                            <a style="cursor: pointer;">Forgot Password?</a>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<textarea rows="6" [(ngModel)]="enteredValue.title"> </textarea>
+<textarea rows="6" [(ngModel)]="enteredValue.content"> </textarea>
+
+<hr>
+
+<button type="button " class="btn btn-primary sl-2 " (click)="onsave() "> 
+save </button>
+
+<div class="col-md-9 " style="background-color:cornsilk ">
+    <div class="table-box table-fullwidth pt-3 " style="flex-basis:100% ">
+        <div class="table-responsive ">
+            <table class="table table-hover table-striped table-bordered table-sm ">
+                <thead class="thead-dark ">
+                    <tr>
+                        <th>PostsTitle</th>
+                        <th>PostsContent</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let displayItem of postArray ; let i=index;  ">
+                        <td>{{displayItem.title}}</td>
+                        <td>{{displayItem.content}}</td>
+                        <td> <button type="button " class="btn btn-primary sl-2 " (click)="ondelete(displayItem._id)"> 
+                            Delete </button></td>
+                    </tr>
+                </tbody>
+
+            </table>
+            <mat-paginator [length]="totalPosts" [pageSize]="postperpage" [pageSizeOptions]="pageSizeOptions" (page)="onChanepage($event)"></mat-paginator>
+        </div>
+    </div>
+</div>
