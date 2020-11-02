@@ -13,14 +13,14 @@ var app = express();
 var bodyParser = require('body-parser');
 const { error } = require('console');
 
-mongoose.connect("mongodb+srv://ana:EvnF8OYFQewh5ovy@cluster0.psp8r.mongodb.net/node-angular?retryWrites=true&w=majority", { useUnifiedTopology: true, useNewUrlParser: true })
+// EvnF8OYFQewh5ovy
+mongoose.connect("mongodb+srv://ana:rxzn1nCnntODy7xp@cluster0.hl9eq.mongodb.net/core?retryWrites=true&w=majority", { useUnifiedTopology: true, useNewUrlParser: true })
     .then(() => {
         console.log('connected to Database')
     })
     .catch((err) => {
         console.log(err)
     })
-
 app.use(bodyParser.urlencoded({
     extended: true
 }));
@@ -53,17 +53,18 @@ app.use(express.static(path.join(__dirname, 'public/dist/express')));
 
 app.get(['/home', '/posts', '/', '/login', '/signup'], function(req, res) {
     res.header("Access-Control-Allow-Origin", '*');
-    res.header('Access-Control-Allow-Headers', 'Content-type,Accept,X-Access-Token,X-Key,token,Origin,X-Origin');
+    res.header('Access-Control-Allow-Headers', 'Content-type,Accept,X-Access-Token,X-Key,token,Origin,X-Origin, Authorization');
     res.sendFile('index.html', { root: __dirname + '/public/dist/express' });
 });
 
 app.use('/', indexRouter);
 app.use('/users/', usersRouter);
 
-app.post("/api/postData", (req, res, next) => {
+app.post("/api/postData", checkAuth, (req, res, next) => {
     const post = new Post({
-        title: req.body.title,
-        content: req.body.content
+        userName: req.body.userName,
+        userCountry: req.body.userCountry,
+        userModeOfPay: req.body.userModeOfPay
     })
     post.save();
     res.status(201).json({
@@ -89,7 +90,6 @@ app.get("/api/getData", (request, response) => {
 
     app.delete("/api/deleteData/:id", checkAuth, (req, res, next) => {
         Post.deleteOne({ _id: req.params.id }).then(result => {
-            console.log(result);
             res.status(200).json({ message: 'post deleted' })
         });
     });

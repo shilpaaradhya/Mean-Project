@@ -2,16 +2,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HTTP_INTERCEPTORS } from "@angular/Common/Http"
-
+import { HTTP_INTERCEPTORS } from "@angular/common/http"
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
-import { AuthInterceptor} from "./auth/auth-interceptor"
+import { AuthInterceptor} from "./auth.interceptor"
 import { MatPaginatorModule} from "@angular/material/paginator"
+import { AuthGuard } from "./auth.guard";
+import { PagenotfoundComponent } from './auth/pagenotfound/pagenotfound.component'
 
 
 @NgModule({
@@ -19,17 +21,19 @@ import { MatPaginatorModule} from "@angular/material/paginator"
     AppComponent,
     HomeComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    BrowserAnimationsModule
   
   ],
-  providers: [ { provide : HTTP_INTERCEPTORS , useClass :AuthInterceptor , multi : true}],
+  providers: [ AuthGuard ,{ provide : HTTP_INTERCEPTORS , useClass : AuthInterceptor , multi : true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
