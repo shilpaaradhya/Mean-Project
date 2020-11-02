@@ -1,46 +1,78 @@
-<div class="wrapper">
-    <div class=" loginWrapper loginImage">
-        <div class="container ">
+<!DOCTYPE html>
+<html lang="en">
 
-            <section class="loginBox">
-                <header class="mb text-center p-2 pb-4">
-                    <!-- <figure><img src="./assets/img/logo.png" alt="" style="width: 166px;height: 115px;"></figure> -->
-                    <h3 style="font-family: fantasy;"> ANGULAR PROJECT</h3>
-                    <h6 style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Post Creation</h6>
-                </header>
-                <form #data="ngForm" (ngSubmit)="login()" class="form-horizontal">
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <input type="email" name="email" required #email="ngModel" [(ngModel)]="user.email" class="form-control" id="inputEmail3" placeholder="Email">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <input type="password" name="password" required #password="ngModel" [(ngModel)]="user.password" class="form-control" id="inputPassword3" placeholder="Password">
-                        </div>
-                    </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
 
-                    <div class="col-sm-12" *ngIf="errdiv" style="text-align: center;">
-                        <i style="font-style:normal;color:#fd6603; margin-top:-20px">{{errMsg}}</i>
-                    </div>
-                    <div class="col-sm-12" *ngIf="expireddiv" style="text-align: center;">
-                        <i style="font-style:normal;color:#fd6603; margin-top:-20px">Session Expired
-                            please login.</i>
-                    </div>
-                    <div class="form-group pt-2 text-center">
-                        <div class="col-sm-12">
-                            <div class="checkbox mb">
-                                <!-- <label>
-                                    <input type="checkbox" checked=""> <span class="small">Remember me</span>
-                                </label> -->
+    <link rel="stylesheet" href="https://unpkg.com/@coreui/coreui/dist/css/coreui.min.css">
+    <script src="https://kit.fontawesome.com/fb8a4c26a7.js" crossorigin="anonymous"></script>
+
+    <style>
+        html,
+        body {
+            background-image: url('https://image.shutterstock.com/image-vector/abstract-particle-background-mess-network-600w-1663394287.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+    <body class="c-app flex-row align-items-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-9">
+                    <div class="card-group">
+                        <div class="card p-4">
+                            <form action="dashboard.html">
+                                <div class="card-body">
+                                    <h1 style="text-align: center;">Sign Up</h1>
+                                    <p class="text-muted" style="text-align: center;">Create your account</p>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend"><span class="input-group-text">
+                                            <i class="fas fa-user"></i></span></div>
+                                        <input type="email" name="email" required #email="ngModel" [(ngModel)]="user.email" class="form-control" id="inputEmail3" placeholder="Email">
+                                    </div>
+                                    <div class="input-group mb-4">
+                                        <div class="input-group-prepend"><span class="input-group-text">
+                                            <i class="fas fa-key"></i></span></div>
+                                        <input type="password" name="password" required #password="ngModel" [(ngModel)]="user.password" class="form-control" id="inputPassword3" placeholder="Password">
+                                    </div>
+                                    <div class="">
+                                        <div class="">
+                                            <button class="btn-lg btn-block btn-info px-4" (click)="SignUp()" type="submit">Login</button>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <button class="btn btn-link px-0" (click)="Login()" type="button"> Already have Account?</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card text-white bg-info py-5">
+                            <div class="card-body text-center">
+                                <div>
+                                    <p style="font-size: 35px; font-weight: bolder;">Welcome to S3 Infosoft!</p>
+                                    <!-- <h4>Sign up</h4> -->
+                                    <p>This is Test Sign Up page.</p>
+                                    <!-- <button class="btn btn-lg btn-outline-light mt-3" type="button">Register
+                                        Now!</button> -->
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn-lg1 btn-primary">Sign up</button>
-                            <div class="clearfix mt pt-3"></div>
-                            <a style="cursor: pointer;">Already have an account?</a>
                         </div>
                     </div>
-                </form>
-            </section>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
+
+
+    </body>
+
+</body>

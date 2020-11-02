@@ -1,4 +1,5 @@
 export interface post{
-    title : string ;
-    content : string 
+    userName : string ;
+    userCountry : string ;
+    userModeOfPay : string 
 }

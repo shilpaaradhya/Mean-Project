@@ -22,7 +22,7 @@ export class PostsComponent implements OnInit {
   }
 
 
-  onsave(){
+  onSave(){
     this.postArray.push(this.enteredValue)
     this.postData();
     this.getApiData();
@@ -33,7 +33,7 @@ export class PostsComponent implements OnInit {
     return this.http.post ('/api/postData', this.enteredValue
     ).subscribe((response) =>
     {
-      this.postArray = response
+      // this.postArray = response
       console.log( 'response from API' ,response)
     }), (error) => {
       console.log( 'error is' , error)
@@ -63,6 +63,10 @@ export class PostsComponent implements OnInit {
   }
 
   onChanepage( pageData : PageEvent){
+
+  }
+
+  onCancel(){
 
   }
 }

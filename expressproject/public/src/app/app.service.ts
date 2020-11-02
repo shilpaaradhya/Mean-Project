@@ -13,18 +13,3 @@ export class AppService {
   }
 }
 
-// .pipe(map(postData) => {
-
-//   return postData.posts.map(post => {
-  
-//   return{
-  
-//   title: post.title,
-  
-//   content: post.content,
-  
-//   id: post._id
-  
-//   };
-  
-//   });
