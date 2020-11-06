@@ -1,0 +1,159 @@
+*, *::before, *::after{ transition: all 0.3s linear}
+.iflex-sticky-header{ margin-top: 50px;}
+.iflex-sticky-header .iflex-header{position: fixed; top: 0; right: 0; left: 0;}
+
+textarea[resize="false"]{ resize: none}
+/* Custom scrollbar */
+::-webkit-scrollbar {width: 6px;}
+::-webkit-scrollbar-track {-webkit-border-radius: 10px;border-radius: 10px;}
+::-webkit-scrollbar-thumb{-webkit-border-radius: 10px;border-radius: 10px;background: rgba(0,0,0,0.3);}
+::-webkit-scrollbar-thumb:hover{background: rgba(0,0,0,0.5);}
+::-webkit-scrollbar-thumb:window-inactive {background: rgba(255,0,0,0.0);}
+::-webkit-scrollbar:horizontal{ height: 6px}
+body, .table-responsive{scrollbar-width: thin;}
+
+
+/* Border Radius */
+.radius-1{ border-radius: 0.2em}
+.radius-2{ border-radius: 0.3em}
+.radius-3{ border-radius: 0.4em}
+.radius-4{ border-radius: 0.5em}
+.radius-5{ border-radius: 1em}
+.radius-100{ border-radius: 100%}
+.radius-0{ border-radius: unset} 
+.radius-b-0{ border-bottom-left-radius: 0; border-bottom-right-radius: 0}
+.radius-t-0{ border-top-left-radius: 0; border-top-right-radius: 0}
+.radius-lb-0{ border-bottom-left-radius: 0}
+.radius-rb-0{ border-bottom-right-radius: 0}
+.radius-lt-0{ border-top-left-radius: 0}
+.radius-rt-0{ border-top-right-radius: 0}
+
+.radius-b-1{ border-bottom-left-radius: 0.2em; border-bottom-right-radius: 0.2em}
+.radius-t-1{ border-top-left-radius: 0.2em; border-top-right-radius: 0.2em}
+.radius-lb-1{ border-bottom-left-radius: 0.2em}
+.radius-rb-1{ border-bottom-right-radius: 0.2em}
+.radius-lt-1{ border-top-left-radius: 0.2em}
+.radius-rt-1{ border-top-right-radius: 0.2em}
+
+.radius-b-2{ border-bottom-left-radius: 0.3em; border-bottom-right-radius: 0.3em}
+.radius-t-2{ border-top-left-radius: 0.3em; border-top-right-radius: 0.3em}
+.radius-lb-2{ border-bottom-left-radius: 0.3em}
+.radius-rb-2{ border-bottom-right-radius: 0.3em}
+.radius-lt-2{ border-top-left-radius: 0.3em}
+.radius-rt-2{ border-top-right-radius: 0.3em}
+/* z-index */
+.zIndex-1{ z-index: 9}
+.zIndex-2{ z-index: 99}
+.zIndex-3{ z-index: 999}
+.zIndex-4{ z-index: 999}
+.zIndex-5{ z-index: 1000}
+.zIndex-6{ z-index: 1001}
+.zIndex-7{ z-index: 1002}
+.zIndex-8{ z-index: 1003}
+.zIndex-9{ z-index: 1004}
+.zIndex-99{ z-index: 9999}
+/* Opacity */
+.opacity-full{ opacity: 1}
+.opacity-0{ opacity: 0}
+.opacity-1{ opacity: 0.1}
+.opacity-2{ opacity: 0.2}
+.opacity-3{ opacity: 0.3}
+.opacity-4{ opacity: 0.4}
+.opacity-5{ opacity: 0.5}
+.opacity-6{ opacity: 0.6}
+.opacity-7{ opacity: 0.7}
+.opacity-8{ opacity: 0.8}
+.opacity-9{ opacity: 0.9}
+/* Tooltip */
+[iflex-tooltip]{ position: relative; line-height:normal }
+[iflex-tooltip]::before { content: attr(iflex-tooltip); position: absolute; font-size: 0.8em; padding: 1px 8px;
+    color: white; background: rgba(0, 0, 0, 0.75); border-radius: 4px; z-index: 99999; 
+    text-align: left; opacity: 0; visibility: hidden; line-height: 24px; width: auto; min-width: max-content}
+[iflex-tooltip][iflex-tooltip-position="top"]::before{left: 50%; bottom: 100%; top:auto;transform: translateX(-50%);} 
+[iflex-tooltip][iflex-tooltip-position="right"]::before{left:100%; right: auto; top: 0;transform: translateX(0);}
+[iflex-tooltip][iflex-tooltip-position="bottom"]::before{left: 50%; top: 100%; bottom: auto;transform: translateX(-50%);}
+[iflex-tooltip][iflex-tooltip-position="left"]::before{left:auto; right: 100%; top:0;transform: translateX(0);}
+[iflex-tooltip]:hover::before { opacity: 1; visibility: visible}
+/* height */
+.h-100vh{ height: 100vh}
+.h-100vh-xs{ height: calc(100vh - 1em)}
+.h-100vh-sm{ height: calc(100vh - 2em)}
+.h-100vh-md{ height: calc(100vh - 3em)}
+.h-100vh-lg{ height: calc(100vh - 4em)}
+.h-100vh-xl{ height: calc(100vh - 5em)}
+
+
+/* hover */
+[iflex-hover]{ position: relative}
+[iflex-hover]:after {
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 0px;
+    height: 0px;
+    border-radius: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+[iflex-hover="white"]:after, .active[iflex-hover] {}
+[iflex-hover="grey"]:after, .active[iflex-hover] {}
+[iflex-hover]:focus:after{width: 100%;height: 100%;opacity: 1;}
+
+/* scroll */
+.scrollable{overflow:hidden; overflow-y: scroll}
+.icon-btn{text-align: center; height: 30px;}
+.icon-btn > i { font-size: 1.2rem;}
+
+/* Tabs 
+[iflex-tab]:not(:target) {position: relative; z-index: 0; height: 0; overflow: hidden;}
+[iflex-tab]:target { position: relative; z-index: 1; height: auto; overflow: hidden;}
+[iflex-tab]:not(:target) > * { opacity: 0;}
+[iflex-tab]:not(:target) > *:nth-child(1){transform: translateY(100px);}
+[iflex-tab]:not(:target) > *:nth-child(2){transform: translateY(200px);}
+[iflex-tab]:not(:target) > *:nth-child(3){transform: translateY(300px);}
+[iflex-tab]:target > * { transition: all 1s ease; opacity: 1; transform: translateY(0);}
+*/
+[iflex-tab]{position: relative; z-index: 0; height: 0; overflow: hidden;}
+[iflex-tab="on"]{position: relative; z-index: 1; height: auto; overflow: hidden;}
+[iflex-tab] > * { opacity: 0;}
+[iflex-tab] > *:nth-child(1){transform: translateY(100px);}
+[iflex-tab] > *:nth-child(2){transform: translateY(200px);}
+[iflex-tab] > *:nth-child(3){transform: translateY(300px);}
+[iflex-tab] > *:nth-child(4){transform: translateY(400px);}
+[iflex-tab="on"] > * { transition: all 1s ease; opacity: 1; transform: translateY(0) !important;} 
+
+/* clickable */
+input[iflex-click]{ visibility: hidden; opacity: 0; display: none}
+input[iflex-click] + label{ margin-bottom: 0; cursor: pointer}
+input[iflex-click] + label + [iflex-click-on]{ opacity: 0}
+input[iflex-click]:checked + label + [iflex-click-on]{ opacity: 1}
+
+input[iflex-click-1]{ visibility: hidden; opacity: 0; display: none}
+input[iflex-click-1] + label{ margin-bottom: 0; cursor: pointer}
+input[iflex-click-1] + label + [iflex-click-on]{ opacity: 0}
+input[iflex-click-1]:checked + label + [iflex-click-on]{ opacity: 1}
+/*checkbox*/
+input[type="checkbox"]{ opacity: 0; position: absolute; z-index: 1; cursor: pointer}
+input[type="checkbox"] + label{ margin: 0; }
+input[type="checkbox"] + label > i{font-size: 18px !important}
+input[type="checkbox"] + label > i:first-child,
+input[type="checkbox"]:checked + label > i:last-child{ display: none}
+input[type="checkbox"] + label > i:last-child,
+input[type="checkbox"]:checked + label > i:first-child{ display: block}
+
+
+
+/* Sidebars */
+@media only screen and (max-width: 991px) {
+    .iflex-optionsbar{ position: fixed; right: 0; top: 50px; transform: translate(0, 0); height: calc(100vh - 50px); width: 50px; background: #fff}
+    .iflex-optionsbar.on{transform: translate(0, 0);}
+}
+@media only screen and (max-width: 767px) {
+    .iflex-optionsbar{ position: fixed;transform: translate(0, 0); max-height: 50px; top: auto; left: 0; right: 0; bottom: 0}
+    .iflex-optionsbar.on{transform: translate(0, 0);}
+    .options-detail{ display: none}
+    .iflex-optionsbar > .flex-holder > .h-100vh-md{ height: auto; width: 100%}
+    .scrollbar{ overflow:hidden;overflow-y: scroll}
+}
