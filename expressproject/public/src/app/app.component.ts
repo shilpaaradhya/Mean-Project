@@ -17,7 +17,5 @@ export class AppComponent {
   menuItems: any[];
   constructor(  private auth: AuthService ) { }
 
-  onLogout(){
-  this.auth.logout()
-  }
+ 
 }

@@ -61,11 +61,13 @@ app.use('/', indexRouter);
 app.use('/users/', usersRouter);
 
 app.post("/api/postData", checkAuth, (req, res, next) => {
+    console.log('hii')
     const post = new Post({
         userName: req.body.userName,
         userCountry: req.body.userCountry,
-        userModeOfPay: req.body.userModeOfPay
-    })
+        userModeOfPay: req.body.userModeOfPay,
+        creator: req.userData.userId
+    });
     post.save();
     res.status(201).json({
         message: post,
@@ -82,6 +84,7 @@ app.get("/api/getData", (request, response) => {
             console.log(pageSize)
         }
         postQuery.then(documents => {
+
             response.status(201).json({
                 message: documents,
             })
@@ -89,9 +92,13 @@ app.get("/api/getData", (request, response) => {
     }),
 
     app.delete("/api/deleteData/:id", checkAuth, (req, res, next) => {
-        Post.deleteOne({ _id: req.params.id }).then(result => {
-            res.status(200).json({ message: 'post deleted' })
-        });
+        Post.deleteOne({ _id: req.params.id, creator: req.userData.userId }).then(result => {
+            if (result.n > 0) {
+                res.status(200).json({ message: 'post deleted' })
+            } else
+                res.status(401).json({ message: 'Un Authorised' })
+        })
+
     });
 
 // catch 404 and forward to error handler

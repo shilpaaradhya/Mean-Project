@@ -7,7 +7,7 @@
     <meta name="author" content="Łukasz Holeczek">
     <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
     <title>CoreUI Pro Bootstrap Admin Template</title>
-    <script src="https://kit.fontawesome.com/yourcode.js"></script>
+
 
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -33,7 +33,7 @@
                 <a class="c-sidebar-nav-link" href="/posts">
                     <i class="fas fa-tachometer-alt"></i> Dashboard<span class="badge badge-info">NEW</span></a>
             </li>
-            <!-- <li class="c-sidebar-nav-title">Theme</li> -->
+
             <li class="c-sidebar-nav-item">
                 <a class="c-sidebar-nav-link" href="">
                     <i class="fas fa-angle-double-right"></i> CSM</a>
@@ -42,7 +42,7 @@
                 <a class="c-sidebar-nav-link" href="">
                     <i class="fas fa-arrows-alt"></i> CMOV</a>
             </li>
-            <!-- <li class="c-sidebar-nav-title">Components</li> -->
+
             <li class="c-sidebar-nav-dropdown">
                 <a class="c-sidebar-nav-link" href="#">
                     <i class="fas fa-shopping-cart"></i> Subscription</a>
@@ -62,41 +62,43 @@
     <div class="c-sidebar c-sidebar-lg c-sidebar-light c-sidebar-right c-sidebar-overlaid" id="aside">
         <button class="c-sidebar-close c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-show" responsive="true">
             <svg class="c-icon">
-                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-x"></use>
+                <use xlink:href="node_modules/@coreui/icons/svg/address-book.svg"></use>
             </svg>
         </button>
         <ul class="nav nav-tabs nav-underline nav-underline-primary" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#timeline" role="tab">
                     <svg class="c-icon">
-                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-list"></use>
+                        <use xlink:href="node_modules/@coreui/icons/svg/free/cil-airplane-mode-off.svg"></use>
                     </svg></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#messages" role="tab">
                     <svg class="c-icon">
-                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speech"></use>
-                    </svg></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#settings" role="tab">
-                    <i class="far fa-clock" scr="https://kit.fontawesome.com/yourcode.js"></i>
+                        <use xlink:href="coreui-icons-master/svg/free/cil-account-logout.svg"></use>
+                    </svg>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link cp" data-toggle="tab" href="#settings" role="tab">
+                    <i class="material-icons">
+                                power_settings_new
+                            </i>
+                </a>
+            </li>
+            <li class="nav-item"><a class="nav-link"><i class="material-icons"> settings </i></a></li>
         </ul>
-
-
     </div>
     <div class="c-wrapper">
         <header class="c-header c-header-light c-header-fixed">
             <button class="c-header-toggler c-class-toggler d-lg-none mfe-auto" type="button" data-target="#sidebar" data-class="c-sidebar-show">
                 <svg class="c-icon c-icon-lg">
-                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-menu"></use>
+                    <use xlink:href="node_modules/@coreui/icons/svg/brand/cib-acm.svg"></use>
                 </svg>
             </button>
             <a class="c-header-brand d-lg-none c-header-brand-sm-up-center" href="#">
                 <svg width="118" height="46" alt="CoreUI Logo">
-                    <use xlink:href="assets/brand/coreui-pro.svg#full"></use>
+                    <use xlink:href="node_modules/brand/coreui-pro.svg#full"></use>
                 </svg></a>
             <button class="c-header-toggler c-class-toggler mfs-3 d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true">
                 <i class="fas fa-align-justify"></i>

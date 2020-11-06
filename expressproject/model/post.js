@@ -6,7 +6,9 @@ const postSchema = mongoose.Schema({
 
     userCountry: { type: String, required: true },
 
-    userModeOfPay: { type: String, required: true }
+    userModeOfPay: { type: String, required: true },
+
+    creator: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
 
 });
 

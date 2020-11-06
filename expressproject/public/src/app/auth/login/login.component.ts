@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppService } from 'src/app/app.service';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -14,10 +15,12 @@ export class LoginComponent implements OnInit {
   errdiv: boolean;
   errMsg: string = "";
 
+
   ngOnInit() {
   
   }
-  constructor( private auth: AuthService , private r: Router ) { }
+  constructor( private auth: AuthService , private r: Router , private _as: AppService ) { }
+
   login() {
       console.log(this.user);
       this.auth.login(this.user.email , this.user.password);
