@@ -1,0 +1,85 @@
+<div class="contentMain container-fluid pt-3">
+    <div class="fullWidth">
+        <header class="page-header d-flex px-2">
+            <h4 class="page-Title fw-600">User Creation</h4>
+        </header>
+        <div class="content-main radius-2 p-3">
+            <div class="row ">
+                <div class="col-md-4 p-3">
+                    <div>
+                        <form class="form-horizontal " #user="ngForm">
+                            <div class="form-group row">
+                                <label class="col-sm-4 control-label">User Name
+                                  <span>*</span>
+                                </label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="User Name" name="userName" [(ngModel)]="enteredValue.email" #userName="ngModel" required="required">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-4 control-label"> create Password
+                                  <span>*</span>
+                                </label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="password" name="Password" [(ngModel)]="enteredValue.password" #password="ngModel" required="required">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-4 control-label"> Role
+                                    <span>*</span>
+                                </label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="role" name="role" [(ngModel)]="enteredValue.role" #role="ngModel" required="required">
+                                </div>
+                            </div>
+                            <div class="form-group row ">
+                                <div class="col-sm-3 ">
+                                    <button type="button " class="btn btn-secondary ml-2 " (click)="onCancel() ">Cancel</button>
+
+                                </div>
+                                <div class="col-sm-3 ">
+
+                                    <button type="submit " class="btn btn-primary ml-2 " [disabled]="!user.form.valid" (click)="onSave() ">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-6 " style="background-color:cornsilk ">
+                    <div class="table-box table-fullwidth pt-3 " style="flex-basis:100% ">
+                        <div class="table-responsive ">
+                            <table class="table table-hover table-striped table-bordered table-sm ">
+                                <thead class="thead-dark ">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Role</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let displayItem of userDetails ; let i=index;  ">
+                                        <td>{{displayItem.email}}</td>
+                                        <td>{{displayItem.role}}</td>
+                                        <td> <button type="button " class="btn btn-primary sl-1" (click)="ondelete(userDetails._id)"> 
+                                            Delete </button></td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <button type="button " class="btn btn-primary sl-1" (click)="onclick()">Back</button>
+</div>
+
+
+
+<i class="far fa-clock"></i>
+<script>
+    scr = "https://kit.fontawesome.com/yourcode.js"
+</script>
