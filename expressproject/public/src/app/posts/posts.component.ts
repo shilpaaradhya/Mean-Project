@@ -3,6 +3,8 @@ import { AppService} from '../app.service'
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AppModule} from '../app.module'
 import { PageEvent } from '@angular/material/paginator';
+import { SpinnerService } from '../shared/spinner.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-posts',
@@ -14,8 +16,9 @@ export class PostsComponent implements OnInit {
   postArray : any =[]
   totalPosts = 10;
   postperpage = 5;
-  pageSizeOptions = [ 2,4,6,8,10]
-  constructor( private _as : AppService ,  private http :HttpClient ) { }
+  pageSizeOptions = [ 2,4,6,8,10];
+  newNotification : any = {}
+  constructor( private _as : AppService ,  private http :HttpClient , private spinner: SpinnerService , private auth : AuthService ) { }
 
   ngOnInit() {
     this.getApiData();
@@ -33,12 +36,25 @@ export class PostsComponent implements OnInit {
     return this.http.post ('/api/postData', this.enteredValue
     ).subscribe((response) =>
     {
-      // this.postArray = response
       console.log( 'response from API' ,response)
+      this.newNotification = {message: "created New Post"}
+      this.notifyData();
+    }), (error) => {
+      console.log( 'error is' , error)
+      
+    }
+    
+  }
+
+  notifyData(){
+    return this.http.post ('/api/notifyData', this.newNotification
+    ).subscribe((response) =>
+    {
+      console.log( 'response from API' ,response)
+      
     }), (error) => {
       console.log( 'error is' , error)
     }
-    
   }
 
   getApiData(){
@@ -47,8 +63,10 @@ export class PostsComponent implements OnInit {
     {
       this.postArray = response.message
       console.log( 'response from API' ,response)
+      this.spinner.requestEnded();
     }), (error) => {
       console.log( 'error is' , error)
+      this.spinner.requestEnded();
     }
   }
 
@@ -56,6 +74,8 @@ export class PostsComponent implements OnInit {
     this.http.delete('/api/deleteData/' + postid).subscribe((response) =>
     {
       console.log( 'response from API' ,response)
+      this.newNotification = { message:"Deleted a Post"};
+      this.notifyData()
     }), (error) => {
       console.log( 'error is' , error)
     }
@@ -67,7 +87,12 @@ export class PostsComponent implements OnInit {
   }
 
   onCancel(){
+    this.enteredValue={}
+  }
 
+
+  onlogout(){
+this.auth.logout()
   }
 }
 

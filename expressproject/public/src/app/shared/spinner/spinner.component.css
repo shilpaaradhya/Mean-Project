@@ -84,18 +84,18 @@
     height: 100%;
     top: 0;
     z-index: 1009;
-    background: rgba(107, 142, 194, 0.5);
+    background: rgba(236, 238, 241, 0.623);
 }
 
 .bee-spinner {
     width: 20%;
-    height: 20%;
+    height: 300%;
     position: fixed;
     top: 40%;
     left: calc(50% - 10%);
     z-index: 100;
     background-image: url("https://thumbs.gfycat.com/SimplisticUnsteadyBeetle.webp");
     background-repeat: no-repeat;
-    background-size: 97%;
+    background-size: 100%;
     animation: bouncing 0.4s cubic-bezier(0.1, 0.25, 0.1, 1) 0s infinite alternate both;
 }

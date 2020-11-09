@@ -11,7 +11,7 @@
     },
     "private": true,
     "dependencies": {
-        "@angular/animations": "~10.0.2",
+        "@angular/animations": "^10.0.14",
         "@angular/cdk": "^10.2.5",
         "@angular/common": "~10.0.2",
         "@angular/compiler": "~10.0.2",
@@ -30,6 +30,7 @@
         "coreui": "^0.4.2-alpha2",
         "font-awesome": "^4.7.0",
         "jquery": "^3.5.1",
+        "ngx-toastr": "^13.1.0",
         "popper.js": "^1.16.1",
         "rxjs": "~6.5.5",
         "simple-line-icons": "^2.5.5",

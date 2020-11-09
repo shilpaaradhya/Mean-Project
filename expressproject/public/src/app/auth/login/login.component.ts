@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   login() {
       console.log(this.user);
-      this.auth.login(this.user.email , this.user.password);
+      this.auth.login(this.user.email , this.user.password );
     }
 
     Signup(){

@@ -12,5 +12,9 @@ export class AppService {
     const queryParams  = `?pagesize=${postPerPage}& page=${currentPage}`
     return this.http.get ('/api/getData' + queryParams)
   }
+
+  getNotify(){
+    return this.http.get ('/api/getNotify')
+  }
 }
 

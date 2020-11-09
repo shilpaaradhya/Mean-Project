@@ -1,11 +1,55 @@
+<section>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Hello!</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/posts/home">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/posts/posts">posts</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="yourtasks">Tasks</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="checklist">Check-list</a>
+                </li> -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            More
+                          </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="myprogress">My-Progress</a>
+                        <a class="dropdown-item" href="addnew">Add-New</a>
+                        <a class="dropdown-item" href="discover">Discover</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="navbar-right">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="" class="nav-link" (click)="onlogout()" data-toggle="modal" data-target="#modalRForm">
+                        logout</a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+</section>
 <div class="contentMain container-fluid pt-3">
     <div class="fullWidth">
         <header class="page-header d-flex px-2">
-            <h4 class="page-Title fw-600">User Creation</h4>
+            <h4 class="page-Title fw-600">Create Post</h4>
         </header>
         <div class="content-main radius-2 p-3">
             <div class="row ">
-                <div class="col-md-4 p-3">
+                <div class="col-md-3 p-3">
                     <div>
                         <form class="form-horizontal " #user="ngForm">
                             <div class="form-group row">
@@ -32,11 +76,11 @@
                                 </div>
                             </div>
                             <div class="form-group row ">
-                                <div class="col-sm-6 ">
+                                <div class="col-sm-3 ">
                                     <button type="button " class="btn btn-secondary ml-2 " (click)="onCancel() ">Cancel</button>
 
                                 </div>
-                                <div class="col-sm-6 ">
+                                <div class="col-sm-3 ">
 
                                     <button type="submit " class="btn btn-primary ml-2 " [disabled]="!user.form.valid" (click)="onSave() ">Save</button>
                                 </div>
@@ -61,7 +105,7 @@
                                         <td>{{displayItem.userName}}</td>
                                         <td>{{displayItem.userCountry}}</td>
                                         <td>{{displayItem.userModeOfPay}}</td>
-                                        <td> <button type="button " class="btn btn-primary sl-1" (click)="ondelete(displayItem._id)"> 
+                                        <td> <button type="button " class="btn btn-dark sl-1" (click)="ondelete(displayItem._id)"> 
                                             Delete </button></td>
                                     </tr>
                                 </tbody>

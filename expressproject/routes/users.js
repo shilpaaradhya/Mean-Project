@@ -15,7 +15,8 @@ router.post('/signup', (req, res, next) => {
         .then(hash => {
             const user = new User({
                 email: req.body.email,
-                password: hash
+                password: hash,
+                role: req.body.role
             })
             user.save()
                 .then(result => {
@@ -56,12 +57,13 @@ router.post('/login', (req, res, next) => {
                     message: " Auth Failed "
                 })
             }
-            const token = jwt.sign({ email: fetchedUser.email, userId: fetchedUser._id }, "secret_this_should_be_longer", { expiresIn: "1h" })
+            const token = jwt.sign({ email: fetchedUser.email, userId: fetchedUser._id, role: fetchedUser.role }, "secret_this_should_be_longer", { expiresIn: "1h" })
             res.status(201).json({
                 token: token,
-                userId: fetchedUser._id
-
+                userId: fetchedUser._id,
+                role: fetchedUser.role
             })
+            console.log(role)
         })
         .catch(err => {
             console.log(err)

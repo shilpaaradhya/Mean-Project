@@ -6,7 +6,8 @@ var logger = require('morgan');
 const mongoose = require('mongoose')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-const Post = require('../expressproject/model/post')
+const Post = require('../expressproject/model/post');
+const Notify = require('../expressproject/model/notify');
 const checkAuth = require('./middleware/check-auth')
 var app = express();
 
@@ -51,7 +52,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public/dist/express')));
 
-app.get(['/home', '/posts', '/', '/login', '/signup'], function(req, res) {
+app.get(['/home', '/posts', '/', '/login', '/signup', '/home/*', '/posts/*'], function(req, res) {
     res.header("Access-Control-Allow-Origin", '*');
     res.header('Access-Control-Allow-Headers', 'Content-type,Accept,X-Access-Token,X-Key,token,Origin,X-Origin, Authorization');
     res.sendFile('index.html', { root: __dirname + '/public/dist/express' });
@@ -61,12 +62,24 @@ app.use('/', indexRouter);
 app.use('/users/', usersRouter);
 
 app.post("/api/postData", checkAuth, (req, res, next) => {
-    console.log('hii')
     const post = new Post({
         userName: req.body.userName,
         userCountry: req.body.userCountry,
         userModeOfPay: req.body.userModeOfPay,
-        creator: req.userData.userId
+        creator: req.userData.userId,
+        creatorName: req.userData.email
+    });
+    post.save();
+    res.status(201).json({
+        message: post,
+    })
+});
+
+app.post("/api/notifyData", checkAuth, (req, res, next) => {
+    const post = new Notify({
+        message: req.body.message,
+        creator: req.userData.userId,
+        creatorName: req.userData.email
     });
     post.save();
     res.status(201).json({
@@ -83,6 +96,16 @@ app.get("/api/getData", (request, response) => {
                 .limit(pageSize);
             console.log(pageSize)
         }
+        postQuery.then(documents => {
+
+            response.status(201).json({
+                message: documents,
+            })
+        });
+    }),
+
+    app.get("/api/getNotify", (request, response) => {
+        const postQuery = Notify.find();
         postQuery.then(documents => {
 
             response.status(201).json({
